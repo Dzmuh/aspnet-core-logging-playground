@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -41,6 +41,7 @@ namespace aspnet_core_pages_serilog_on_startup
             {
                 return new LoggerConfiguration()
                     .Enrich.FromLogContext()
+                    // Verbose - если нужно писать подробный лог
                     .MinimumLevel.Verbose()
                     .WriteTo.Console()
                     .CreateLogger();

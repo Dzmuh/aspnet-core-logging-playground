@@ -14,7 +14,18 @@
 
 Это минимум.
 
-Дальше мы можем сконфигурировать то
+Дальше мы можем сконфигурировать логер и подробности которые пишутся в лог. Например:
+
+```csharp
+services.AddSingleton<Serilog.ILogger>(options =>
+{
+    return new LoggerConfiguration()
+        .Enrich.FromLogContext()
+        .MinimumLevel.Verbose()
+        .WriteTo.Console()
+        .CreateLogger();
+});
+```
 
 ## Ссылки
 

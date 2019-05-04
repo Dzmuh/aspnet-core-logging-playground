@@ -1,0 +1,30 @@
+﻿@page
+@model aspnet_core_pages_serilog_on_startup.Pages.FormLogerModel
+@{
+    ViewData["Title"] = "Form Loger";
+}
+<h1>Form Loger</h1>
+<section>
+    <h2>Форма 1</h2>
+    <p>Эта форма для отправки использует метод GET</p>
+
+    <form method="get">
+        <div class="form-group">
+            <label for="exampleInputText1">Text 1</label>
+            <input type="text" class="form-control" id="exampleInputText1" placeholder="Enter text" name="exampleInputText1">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</section>
+<section>
+    <h2>Форма 2</h2>
+    <p>Эта форма для отправки использует метод POST</p>
+
+    <form method="post">
+        <div class="form-group">
+            <label for="exampleInputText2">Text 2</label>
+            <input type="text" class="form-control" id="exampleInputText2" placeholder="Enter text" name="exampleInputText2">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</section>
