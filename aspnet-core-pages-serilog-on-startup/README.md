@@ -30,4 +30,5 @@ services.AddSingleton<Serilog.ILogger>(options =>
 ## Ссылки
 
 * [Serilog](https://serilog.net/) ([Github](https://github.com/serilog/serilog))
+  * [Configuration Basics](https://github.com/serilog/serilog/wiki/Configuration-Basics)
 * [Serilog.Extensions.Logging.File - NuGet Gallery](https://www.nuget.org/packages/Serilog.Extensions.Logging.File/) ([Github](https://github.com/serilog/serilog-extensions-logging-file))
