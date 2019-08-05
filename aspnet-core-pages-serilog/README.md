@@ -60,8 +60,6 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 * Удаляем параметры `ILoggerFactory ` и все вызовы `Add*()` связанные с фабрикой логирования в файле `Startup.cs`
 * Удаляем `UseApplicationInsights()` (это может быть заменено пакетом [Serilog.Sinks.ApplicationInsights](https://github.com/serilog/serilog-sinks-applicationinsights), если это необходимо)
 
-## Логирование запросов
-
 ## Ссылки и источники
 
 * [Serilog.AspNetCore - Github](https://github.com/serilog/serilog-aspnetcore)

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,12 +8,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
-using Serilog;
-using Serilog.Core;
-
-namespace aspnet_core_pages_serilog_on_startup
+namespace aspnet_core_pages_serilog_inline
 {
     public class Startup
     {
@@ -26,23 +22,11 @@ namespace aspnet_core_pages_serilog_on_startup
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
-
-            services.AddSingleton<Serilog.ILogger>(options =>
-            {
-                return new LoggerConfiguration()
-                    .Enrich.FromLogContext()
-                    // Verbose - если нужно писать подробный лог
-                    .MinimumLevel.Verbose()
-                    .WriteTo.Console()
-                    .CreateLogger();
-            });
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            loggerFactory.AddFile("log-{Date}.txt");
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

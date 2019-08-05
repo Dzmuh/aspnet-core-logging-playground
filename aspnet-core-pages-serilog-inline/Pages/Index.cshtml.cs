@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace aspnet_core_pages_serilog.Pages
+namespace aspnet_core_pages_serilog_inline.Pages
 {
     public class IndexModel : PageModel
     {
         public void OnGet()
         {
+
         }
     }
 }
