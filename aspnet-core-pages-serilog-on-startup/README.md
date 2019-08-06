@@ -7,6 +7,7 @@
                 return new LoggerConfiguration().CreateLogger();
             });
    ```
+    Этот метод регистрации позволит использовать методы `Serilog.ILogger`.
 2. Активируем и конфигурируем логер в Startup.cs, метод Configure:
    ```csharp
    loggerFactory.AddFile("log-{Date}.txt");

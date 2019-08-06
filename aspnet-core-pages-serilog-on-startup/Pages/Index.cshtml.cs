@@ -9,10 +9,7 @@ namespace aspnet_core_pages_serilog_on_startup.Pages
         private readonly ILogger<IndexPageViewModel> _logger;
         private readonly Serilog.ILogger _seriLogger;
 
-        public IndexPageViewModel(
-            ILogger<IndexPageViewModel> logger,
-            Serilog.ILogger seriLogger
-            )
+        public IndexPageViewModel(ILogger<IndexPageViewModel> logger, Serilog.ILogger seriLogger)
         {
             this._logger = logger;
             this._seriLogger = seriLogger;

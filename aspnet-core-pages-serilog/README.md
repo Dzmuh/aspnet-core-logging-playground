@@ -63,7 +63,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 ## Запись журнала событий
 
 В этом демонстрационном проекте я не использую DI и для отправки лога поставщикам ведения журнала в этой ситуации следует использовать статичный класс `Log` или методы `ILogger`.
-Например:
+Например, используя статичный класс `Log`:
 
 ```csharp
 Log.Verbose("Serilog VERBOSE message");
@@ -73,6 +73,29 @@ Log.Warning("Serilog WARN message");
 Log.Error("Serilog ERROR message");
 Log.Fatal("Serilog FATAL message");
 ```
+
+Используя методы `ILogger`: 
+
+```csharp
+private readonly ILogger<IndexPageViewModel> _logger;
+
+public IndexPageViewModel(ILogger<IndexPageViewModel> logger)
+{
+    this._logger = logger;
+}
+
+public void OnGet()
+{
+    this._logger.LogTrace("DoSomething TRACE message");
+    this._logger.LogDebug("DoSomething DEBUG message");
+    this._logger.LogInformation("DoSometing INFO message");
+    this._logger.LogWarning("DoSometing WARN message");
+    this._logger.LogError("DoSometing ERROR message");
+    this._logger.LogCritical("DoSometing CRITICAL message");
+}
+```
+
+Обращу внимание на то, что использование `ILogger` обеспечивает переносимость кода.
 
 ## Ссылки и источники
 
