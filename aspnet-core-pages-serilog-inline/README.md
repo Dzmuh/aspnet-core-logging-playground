@@ -31,3 +31,23 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             .Enrich.FromLogContext()
             .WriteTo.Console());
 ```
+
+## Запись журнала событий
+
+В этом демонстрационном проекте я не использую DI и для отправки лога поставщикам ведения журнала в этой ситуации следует использовать статичный класс `Log` или методы `ILogger`.
+Например:
+
+```csharp
+Log.Verbose("Serilog VERBOSE message");
+Log.Debug("Serilog DEBUG message");
+Log.Information("Serilog INFO message");
+Log.Warning("Serilog WARN message");
+Log.Error("Serilog ERROR message");
+Log.Fatal("Serilog FATAL message");
+```
+
+## Ссылки и источники
+
+* [Serilog.AspNetCore - Github](https://github.com/serilog/serilog-aspnetcore)
+* [Serilog.AspNetCore - NuGet Gallery](https://www.nuget.org/packages/Serilog.AspNetCore)
+* [Writing Log Events](https://github.com/serilog/serilog/wiki/Writing-Log-Events)
