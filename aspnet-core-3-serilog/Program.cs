@@ -7,6 +7,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
+using Serilog;
+
 namespace aspnet_core_3_serilog
 {
     public class Program
@@ -20,7 +22,11 @@ namespace aspnet_core_3_serilog
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>()
+                              .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
+                                    .ReadFrom.Configuration(hostingContext.Configuration)
+                                    .Enrich.FromLogContext()
+                                    .WriteTo.Console());
                 });
     }
 }
