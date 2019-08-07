@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 using Serilog;
 
 namespace aspnet_core_pages_serilog_inline.Pages

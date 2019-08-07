@@ -7,7 +7,7 @@
       "destination": "wwwroot/lib/bootstrap/",
       "files": [
         "css/bootstrap.css"
-      ] 
+      ]
     }
   ]
 }

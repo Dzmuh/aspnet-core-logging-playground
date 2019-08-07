@@ -43,8 +43,6 @@ namespace aspnet_core_3_serilog
 
             app.UseRouting();
 
-            app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
