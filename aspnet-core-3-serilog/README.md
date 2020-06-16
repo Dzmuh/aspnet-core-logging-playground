@@ -1,13 +1,10 @@
-﻿# Serilog и AspNetCore 3
+﻿# Serilog и AspNetCore 3.1
 
 У этого проекта есть несколько задач:
 
 * Тестирование тех или иных пакетов Serilog в связке с AspNetCore 3 и попутное решение возникающих проблем
 * Наработка базового шаблона с лучшими практиками использования Serilog в связке с AspNetCore 3
 
-## ROADMAP
+## Links
 
-1. [ ] Протестирую встроенную активацию Serilog в AspNetCore приложении, см. проект `aspnet-core-pages-serilog-inline`
-   * [ ] На этом этапе можно попробовать с помощью делегатов произвести расширенную конфигурацию Serilog, потому что `ILoggerFactory` устарел
-2. [ ] Протестирую рекомендуемое подключение в `Program.cs` с конфигурированием
-3. [ ] Протестирую активацию в `Startup.cs` с внедрением DI и расширенным конфигурированием
+* [Serilog.AspNetCore - GitHub](https://github.com/serilog/serilog-aspnetcore)
