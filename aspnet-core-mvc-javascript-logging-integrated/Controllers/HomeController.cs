@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using aspnet_core_mvc_javascript_logging_integrated.Models;
+using JavascriptLoggingIntegrated.Models;
 
-namespace aspnet_core_mvc_javascript_logging_integrated.Controllers
+namespace JavascriptLoggingIntegrated.Controllers
 {
     public class HomeController : Controller
     {

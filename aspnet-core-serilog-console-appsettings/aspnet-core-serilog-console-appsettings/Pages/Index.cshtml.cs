@@ -4,13 +4,13 @@ using Microsoft.Extensions.Logging;
 
 namespace aspnet_core_serilog_console_appsettings.Pages
 {
-    public class IndexModel : PageModel
+    public class IndexPageViewModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private readonly ILogger<IndexPageViewModel> _logger;
         private readonly Serilog.ILogger _seriLogger;
 
-        public IndexModel(
-            ILogger<IndexModel> logger,
+        public IndexPageViewModel(
+            ILogger<IndexPageViewModel> logger,
             Serilog.ILogger seriLogger
             )
         {

@@ -1,6 +1,6 @@
 using System;
 
-namespace aspnet_core_mvc_javascript_logging_integrated.Models
+namespace JavascriptLoggingIntegrated.Models
 {
     public class ErrorViewModel
     {

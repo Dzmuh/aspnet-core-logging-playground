@@ -31,6 +31,8 @@ namespace aspnet_core_serilog_console_appsettings
 
             services.AddRazorPages()
                 .AddNewtonsoftJson();
+
+            //services.AddSingleton<Serilog.ILogger>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

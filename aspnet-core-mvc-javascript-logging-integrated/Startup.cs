@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,9 +6,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace aspnet_core_mvc_javascript_logging_integrated
+using JavascriptLoggingIntegrated.jsLogger.Extensions;
+using JavascriptLoggingIntegrated.jsLogger.TagHelpers;
+
+namespace JavascriptLoggingIntegrated
 {
     public class Startup
     {
@@ -19,16 +24,28 @@ namespace aspnet_core_mvc_javascript_logging_integrated
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Настроиваем поставщиков системы логирования ASP.NET Core для задействования их совместно с jsLogger
+            services.AddLogging(loggingBuilder =>
+            {
+                loggingBuilder.AddConfiguration(Configuration.GetSection("Logging"));
+                loggingBuilder.AddConsole(Configuration.GetSection("Logging"));
+                loggingBuilder.AddDebug();
+            });
 
+            // Настроиваем jsLogger
+            services.AddJavaScriptLogging(options =>
+            {
+                options.HandleGlobalExceptions = true;
+            });
+            services.AddSingleton<ITagHelperComponent, JavaScriptLoggingTagHelperComponent>();
 
+            // ASP.NET Core MVC
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -44,7 +61,8 @@ namespace aspnet_core_mvc_javascript_logging_integrated
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            // jsLogger
+            app.UseJavaScriptLogging();
 
             app.UseEndpoints(endpoints =>
             {
