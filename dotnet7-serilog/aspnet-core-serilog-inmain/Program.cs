@@ -31,12 +31,12 @@ namespace aspnet_core_serilog_inmain
                 app.Run();
 
                 Log.Information("Stopped cleanly");
-                return 0;
+                return 1;
             }
             catch (Exception ex)
             {
                 Log.Fatal(ex, "An unhandled exception occured during bootstrapping");
-                return 1;
+                return 0;
             }
             finally
             {
