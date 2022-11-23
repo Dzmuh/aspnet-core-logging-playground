@@ -104,3 +104,70 @@ public static int Main(string[] args)
 
 ### 5. Подключаю Serilog к `WebApplicationBuilder`
 
+Минимальный вариант:
+```csharp
+    builder.Host.UseSerilog((context, configuration) => configuration
+        .WriteTo.Console()
+        .ReadFrom.Configuration(context.Configuration));
+```
+
+Я по старинке делаю так:
+```csharp
+    builder.Host.UseSerilog((context, services, configuration) => configuration
+           .WriteTo.Console()
+           .ReadFrom.Configuration(context.Configuration)
+           .ReadFrom.Services(services));
+```
+
+### 6. Заменяю конфигурацию логированния в `appsettings.json`
+
+В файле `appsettings.json` удаляю секцию `"Logging"` и добавляю `"Serilog"`.
+
+Полная конфигурация Serilog в JSON может выглядеть так:
+
+```json
+{
+    "Serilog": {
+    "MinimumLevel": {
+        "Default": "Information",
+        "Override": {
+            "Microsoft": "Warning",
+            "Microsoft.Hosting.Lifetime": "Information"
+        }
+    },
+    "Filter": [
+        {
+        "Name": "ByExcluding",
+        "Args": {
+            "expression": "@mt = 'An unhandled exception has occurred while executing the request.'"
+            }
+        }
+    ],
+    "WriteTo": [
+        {
+        "Name": "File",
+        "Args": { "path":  "./logs/log-.log", "rollingInterval": "Day" }
+        }
+    ]
+    },
+    "AllowedHosts": "*"
+}
+```
+
+Из `appsettings.Development.json` секцию `"Logging"` можно удалить целиком.
+Аргумент за: во время разработки обычно стоит использовать тот же уровень ведения журнала, который используется в рабочей среде, так как если мы не способны найти проблемы, используя рабочие журналы в процессе разработки, найти проблемы в реальной производственной среде будет еще труднее.
+
+### 7. Добавляю связующие механизмы Serilog для логирования запросов
+
+По умолчанию платформа ASP.NET Core регистрирует несколько событий информационного уровня для каждого запроса.
+
+Логирование запросов через Serilog упрощает это до единого сообщения на каждый запрос, включая путь, метод, время, код состояния и исключение.
+
+```csharp
+    app.UseSerilogRequestLogging();
+```
+
+## Пишем события журнала
+
+Эти настройки позволяют использовать Serilog как глобальный логер через статический класс `Log`, как в примерах выше, так и задействовать абстракцию _Microsoft.Extensions.Logging_'s
+`ILogger<T>`, что позволит использовать Serilog через методы внедрения зависимостей в контроллеры и другие компоненты.
